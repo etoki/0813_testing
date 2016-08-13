@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}パスワード忘れと変更{% endblock %}
+{% block main %}
+<article class="col-sm-8 col-md-9">
+<div class="col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
+	<div class="panel panel-form">
+		<!-- Form header -->
+		<div class="panel-heading">
+			<h2 class="title">Forgot password?</h2>
+			<p>We'll email you a link to reset it.</p>
+		</div>
+		<div class="panel-body">
+			<form role="form">
+				<div class="form-group">
+					<div class="input-group">
+						<div class="has-feedback has-left-icon">
+							<input type="email" class="form-control" id="email" placeholder="Email or username" />
+							<span class="fa fa-envelope form-control-feedback" aria-hidden="true"></span>
+						</div>
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-primary">Send email</button>
+						</span>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</article>
+<div class="clearfix"></div>
+{% endblock %}

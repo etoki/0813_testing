@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}ログイン{% endblock %}
+{% block main %}
+<article class="col-sm-8 col-md-9">
+	<div class="row">
+		<!-- Login form -->
+		<div class="col-md-6">
+			<div class="panel panel-form">
+				<!-- Form header -->
+				<div class="panel-heading">
+					<h2 class="title">Login</h2>
+					<p>Don't have an account? <a href="/registration">Create one</a>.</p>
+				</div>								
+				<div class="panel-body">
+					<form method="POST" action="{% url "account:login" %}">
+						{% csrf_token %}
+						<!-- Username or email -->
+						<div class="form-group">
+							<label for="username" class="control-label">{{ form.username.label}}</label>
+							<div class="has-feedback">
+								<p class="form-control" id="username">{{ form.username }}</p>
+						        <p class="errors">{% for error in form.username.errors %} {{error}} {% endfor %}</p>
+							<span class="fa fa-user form-control-feedback" aria-hidden="true"></span>
+							</div>
+						</div>
+						<!-- Password -->
+						<div class="form-group">
+							<label for="password" class="control-label">{{ form.password.label}}</label>
+							<div class="has-feedback">
+								<p class="form-control" id="password">{{ form.password }}</p>
+						        <p class="errors">{% for error in form.password.errors %} {{error}} {% endfor %}</p>
+								<span class="fa fa-lock form-control-feedback" aria-hidden="true"></span>
+							</div>
+						</div>
+						<!-- Remember checkbox -->
+						<div class="form-group">
+							<div class="checkbox">
+								<label class="custom-option toggle" data-off="OFF" data-on="ON">
+									<input type="checkbox" id="remember" name="remember" value="1" />
+									<span class="button-checkbox"></span>
+								</label>
+								<label for="remember">Remember Me</label>
+							</div>
+						</div>
+						<!-- Logun button -->
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary">Login</button>
+							<input type="hidden" name="next" value="{{ next }}" />
+							<a class="btn btn-link" href="/forgot">Forgotten your password?</a>
+						</div>
+						{% if form.errors %}
+						<p>メールアドレスまたはパスワード名が正しくありません。</p>
+						{% endif %}
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!-- Login with social network -->
+		<div class="col-md-6">
+			<h2 class="text-center">Login with a social network</h2>
+			
+			<button type="button" class="btn btn-block btn-facebook btn-lg btn-left-icon">
+				<span class="fa fa-facebook" aria-hidden="true"></span> Login with Facebook
+			</button>
+			
+			<button type="button" class="btn btn-block btn-twitter btn-lg btn-left-icon">
+				<span class="fa fa-twitter" aria-hidden="true"></span> Login with Twitter
+			</button>
+			
+			<button type="button" class="btn btn-block btn-google btn-lg btn-left-icon">
+				<span class="fa fa-google-plus" aria-hidden="true"></span> Login with Google Plus
+			</button>
+		</div>
+	</div>
+</article>
+<div class="clearfix"></div>
+{% endblock %}
