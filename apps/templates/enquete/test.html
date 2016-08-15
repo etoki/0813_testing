@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}アンケート{% endblock %}
+{% block main %}
+<article class="col-sm-8 col-md-9">
+	<div class="panel panel-form">
+		<div class="panel-heading">
+			<h2 class="title">Horizontal form</h2>
+		</div>
+		<div class="panel-body">
+			<!--form class="form-horizontal" role="form"-->
+			<form method="POST" action="{% url "enquete:test" %}">
+				{% csrf_token %}
+				<!-- Input fields -->
+				<fieldset>
+					<legend>Input fields</legend>
+					<div class="form-group">
+						<label for="test" class="col-sm-3 control-label">{{ form.test.label}}<span class="required-field">*</span></label>
+						<div class="col-sm-9 col-md-6">
+							<p class="form-control" id="test">{{ form.test }}</p>
+					        <p class="errors">{% for error in form.test.errors %} {{error}} {% endfor %}</p>
+							<p class="help-block">Optional help text.</p>
+						</div>
+					</div>
+				</fieldset>			
+				<!-- submit button -->
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">submit</button>
+					<input type="hidden" name="next" value="{{ next }}" />
+				</div>
+			</form>
+		</div>
+	</div>
+</article>
+<div class="clearfix"></div>
+{% endblock %}
